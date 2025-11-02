@@ -5,7 +5,7 @@ import logging
 import uuid
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Header
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from supabase import create_client
@@ -55,8 +55,9 @@ try:
     )
     logger.info("✅ Whisper model loaded successfully")
 except Exception as e:
-    logger.error(f"Failed to load Whisper model: {e}")
+    logger.error(f"Failed to load Whisper model: {e}", exc_info=True)
     whisper_model = None
+    # Don't raise error here - allow app to start, check in endpoints
 
 # Load summarizer model (IndicBARTSS)
 logger.info(f"Loading summarizer model: {SUMMARIZER_MODEL}")
@@ -71,8 +72,9 @@ try:
     )
     logger.info("✅ Summarizer model loaded successfully")
 except Exception as e:
-    logger.error(f"Failed to load summarizer model: {e}")
+    logger.error(f"Failed to load summarizer model: {e}", exc_info=True)
     summarizer = None
+    # Don't raise error here - allow app to start, check in endpoints
 
 
 # Request/Response models

@@ -1,0 +1,41 @@
+# Render Blueprint Configuration
+# This file can be used to deploy both services automatically
+
+services:
+  # Backend Service
+  - type: web
+    name: classroom-backend
+    env: python
+    rootDir: backend
+    buildCommand: apt-get update && apt-get install -y ffmpeg && pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: WHISPER_MODEL
+        value: tiny
+      - key: SUMMARIZER_MODEL
+        value: ai4bharat/IndicBARTSS
+      - key: BUCKET_NAME
+        value: audio-uploads
+      - key: PORT
+        value: 8000
+
+  # Frontend Service (Static Site)
+  - type: web
+    name: classroom-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_KEY
+        sync: false
+      - key: VITE_BACKEND_URL
+        sync: false
+

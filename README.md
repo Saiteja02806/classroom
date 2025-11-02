@@ -1,128 +1,155 @@
-# AI Telugu Summarization - Authentication
+# AI Telugu Summarization App
 
-A beautiful, modern authentication system built with React, Vite, and Supabase for the AI Telugu Summarization application.
+A full-stack application for transcribing and summarizing audio in Telugu (and other languages) using AI.
 
-## Features
+## 📁 Project Structure
 
-- 🔐 **Secure Authentication** - Powered by Supabase Auth
-- 🎨 **Beautiful UI** - Modern, responsive design with Tailwind CSS
-- 📱 **Mobile Responsive** - Works perfectly on all devices
-- ✅ **Form Validation** - Client-side validation with helpful error messages
-- 🔄 **Password Reset** - Email-based password recovery
-- 🛡️ **Protected Routes** - Secure dashboard with session management
-- ⚡ **Fast & Modern** - Built with Vite for lightning-fast development
+```
+classroom/
+├── frontend/                 # React + Vite frontend (root directory)
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
+├── backend/                  # Python FastAPI backend
+│   ├── app.py
+│   ├── requirements.txt
+│   └── render.yaml
+├── docs/                     # Documentation
+└── README.md
+```
 
-## Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
+### Frontend (Local Development)
 
-- Node.js 16+ and npm/yarn/pnpm
-
-### Installation
-
-1. Install dependencies:
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Update Supabase credentials (if needed):
-   - Edit `src/lib/supabase.js` with your Supabase project URL and anon key
-
-3. Start the development server:
-```bash
+# Start dev server
 npm run dev
-```
 
-4. Open your browser and navigate to `http://localhost:3000`
-
-## Project Structure
-
-```
-├── src/
-│   ├── components/
-│   │   ├── Login.jsx          # Login page component
-│   │   ├── Signup.jsx         # Signup page component
-│   │   ├── ForgotPassword.jsx # Password reset component
-│   │   ├── Dashboard.jsx      # Protected dashboard
-│   │   └── ProtectedRoute.jsx # Route protection wrapper
-│   ├── contexts/
-│   │   └── AuthContext.jsx    # Authentication context provider
-│   ├── lib/
-│   │   └── supabase.js        # Supabase client configuration
-│   ├── App.jsx                # Main app component with routing
-│   ├── main.jsx               # App entry point
-│   └── index.css              # Global styles
-├── package.json
-├── vite.config.js
-└── tailwind.config.js
-```
-
-## Features Overview
-
-### Authentication Pages
-
-1. **Login Page** (`/login`)
-   - Email and password authentication
-   - Remember me option
-   - Forgot password link
-   - Redirects to dashboard on success
-
-2. **Signup Page** (`/signup`)
-   - User registration with name and email
-   - Strong password validation
-   - Email verification flow
-   - Auto-redirect to login after signup
-
-3. **Forgot Password** (`/forgot-password`)
-   - Email-based password reset
-   - Success confirmation message
-
-4. **Dashboard** (`/dashboard`)
-   - Protected route (requires authentication)
-   - Displays user profile information
-   - Sign out functionality
-
-## Supabase Configuration
-
-The app uses Supabase for authentication. Make sure your Supabase project has:
-
-1. Email authentication enabled
-2. Email templates configured (for password reset)
-3. Redirect URLs properly set up
-
-Update the Supabase URL and anon key in `src/lib/supabase.js`:
-
-```javascript
-const supabaseUrl = 'YOUR_SUPABASE_URL'
-const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY'
-```
-
-## Build for Production
-
-```bash
+# Build for production
 npm run build
 ```
 
-The build output will be in the `dist` folder, ready to be deployed.
+### Backend (Local Development)
 
-## Technologies Used
+```bash
+# Navigate to backend
+cd backend
 
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **Supabase** - Backend authentication
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Beautiful icon library
+# Install dependencies
+pip install -r requirements.txt
 
-## Security Best Practices
+# Start server
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+```
 
-- Passwords are hashed and stored securely by Supabase
-- Session management handled by Supabase
-- Protected routes prevent unauthorized access
-- Email verification for new accounts
-- Secure password reset flow
+## 🛠️ Tech Stack
 
-## License
+### Frontend
+- React 18
+- Vite
+- Tailwind CSS
+- Supabase (Auth & Storage)
+- React Router
 
-MIT
+### Backend
+- FastAPI
+- faster-whisper (Transcription)
+- IndicBARTSS (Summarization)
+- Supabase (Database & Storage)
 
+## 📚 Documentation
+
+All documentation is in the `docs/` folder:
+
+- **Setup Guides:**
+  - [Supabase Setup](docs/SUPABASE_SETUP.md)
+  - [Quick Start Guide](docs/QUICK_START.md)
+
+- **Deployment:**
+  - [Render Deployment Guide](docs/RENDER_DEPLOYMENT.md)
+  - [Backend Setup on Render](docs/RENDER_BACKEND_SETUP_GUIDE.md)
+  - [Build Commands](docs/RENDER_BUILD_COMMANDS.md)
+
+- **Application:**
+  - [Application Flow](docs/APPLICATION_FLOW.md)
+  - [Homepage Setup](docs/HOMEPAGE_SETUP.md)
+
+- **Troubleshooting:**
+  - [Error Analysis](docs/RENDER_ERROR_ANALYSIS.md)
+  - [Critical Fixes](docs/CRITICAL_FIXES.md)
+
+## 🌐 Deployment
+
+### Frontend (Render/Vercel/Netlify)
+
+- **Build Command:** `npm install && npm run build`
+- **Publish Directory:** `dist`
+- **Environment Variables:** `VITE_*` prefixed
+
+### Backend (Render)
+
+- **Root Directory:** `backend`
+- **Build Command:** `apt-get update && apt-get install -y ffmpeg && pip install -r requirements.txt`
+- **Start Command:** `uvicorn app:app --host 0.0.0.0 --port $PORT`
+
+See [docs/RENDER_DEPLOYMENT.md](docs/RENDER_DEPLOYMENT.md) for detailed instructions.
+
+## 🔐 Environment Variables
+
+### Frontend (.env)
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_KEY=your_anon_key
+VITE_BACKEND_URL=https://your-backend.onrender.com
+```
+
+### Backend (backend/.env)
+```
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+SUPABASE_ANON_KEY=your_anon_key
+WHISPER_MODEL=tiny
+SUMMARIZER_MODEL=ai4bharat/IndicBARTSS
+BUCKET_NAME=audio-uploads
+PORT=8000
+```
+
+## 📝 Features
+
+- ✅ User Authentication (Supabase Auth)
+- ✅ Audio Recording & Upload
+- ✅ Speech-to-Text (Whisper)
+- ✅ AI Summarization (IndicBARTSS)
+- ✅ Telugu Language Support
+- ✅ Transcript & Summary History
+- ✅ Secure File Storage (Supabase Storage)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+MIT License
+
+## 🔗 Links
+
+- **GitHub Repository:** https://github.com/Saiteja02806/classroom
+- **Supabase Dashboard:** https://supabase.com/dashboard
+
+## 📞 Support
+
+For issues and questions, check the [docs/](docs/) folder or open an issue on GitHub.
+
+---
+
+**Built with ❤️ using React, FastAPI, and Supabase**
