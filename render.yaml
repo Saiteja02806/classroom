@@ -29,6 +29,7 @@ services:
   - type: web
     name: classroom-frontend
     env: static
+    rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
@@ -38,4 +39,3 @@ services:
         sync: false
       - key: VITE_BACKEND_URL
         sync: false
-

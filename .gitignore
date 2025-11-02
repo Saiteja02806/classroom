@@ -9,7 +9,9 @@ lerna-debug.log*
 
 # Dependencies
 node_modules/
+frontend/node_modules/
 dist/
+frontend/dist/
 dist-ssr/
 *.local
 
@@ -32,6 +34,9 @@ dist-ssr/
 backend/.env
 backend/.env.local
 backend/.env.production
+frontend/.env
+frontend/.env.local
+frontend/.env.production
 
 # Python
 __pycache__/
@@ -52,6 +57,7 @@ backend/__pycache__/
 *.egg-info/
 dist/
 build/
+frontend/dist/
 
 # OS
 .DS_Store

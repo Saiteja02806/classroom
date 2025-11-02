@@ -6,9 +6,8 @@ A full-stack application for transcribing and summarizing audio in Telugu (and o
 
 ```
 classroom/
-├── frontend/                 # React + Vite frontend (root directory)
+├── frontend/                 # React + Vite frontend
 │   ├── src/
-│   ├── public/
 │   ├── package.json
 │   └── vite.config.js
 ├── backend/                  # Python FastAPI backend
@@ -24,6 +23,9 @@ classroom/
 ### Frontend (Local Development)
 
 ```bash
+# Navigate to frontend
+cd frontend
+
 # Install dependencies
 npm install
 
@@ -72,6 +74,7 @@ All documentation is in the `docs/` folder:
 
 - **Deployment:**
   - [Render Deployment Guide](docs/RENDER_DEPLOYMENT.md)
+  - [Step-by-Step Deployment](docs/RENDER_STEP_BY_STEP_DEPLOYMENT.md)
   - [Backend Setup on Render](docs/RENDER_BACKEND_SETUP_GUIDE.md)
   - [Build Commands](docs/RENDER_BUILD_COMMANDS.md)
 
@@ -87,6 +90,7 @@ All documentation is in the `docs/` folder:
 
 ### Frontend (Render/Vercel/Netlify)
 
+- **Root Directory:** `frontend`
 - **Build Command:** `npm install && npm run build`
 - **Publish Directory:** `dist`
 - **Environment Variables:** `VITE_*` prefixed
@@ -97,11 +101,11 @@ All documentation is in the `docs/` folder:
 - **Build Command:** `apt-get update && apt-get install -y ffmpeg && pip install -r requirements.txt`
 - **Start Command:** `uvicorn app:app --host 0.0.0.0 --port $PORT`
 
-See [docs/RENDER_DEPLOYMENT.md](docs/RENDER_DEPLOYMENT.md) for detailed instructions.
+See [docs/RENDER_STEP_BY_STEP_DEPLOYMENT.md](docs/RENDER_STEP_BY_STEP_DEPLOYMENT.md) for detailed instructions.
 
 ## 🔐 Environment Variables
 
-### Frontend (.env)
+### Frontend (frontend/.env)
 ```
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_KEY=your_anon_key
